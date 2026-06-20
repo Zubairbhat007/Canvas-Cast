@@ -1,0 +1,1989 @@
+﻿:root {
+  color: #1f2937;
+  background: #eef1f6;
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+@keyframes settingsModalPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.app-shell {
+  --page-padding-block: 5.5dvh;
+  --page-padding-inline: 4dvw;
+  position: relative;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+
+.desktop-only-notice {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 34%),
+    linear-gradient(135deg, #0f172a 0%, #111827 52%, #1e1b4b 100%);
+  color: #0f172a;
+}
+
+.desktop-only-notice__card {
+  width: min(520px, 100%);
+  padding: 34px 30px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 24px 70px rgba(2, 6, 23, 0.26);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  text-align: center;
+}
+
+.desktop-only-notice__mark {
+  width: fit-content;
+  margin: 0 auto 18px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.1);
+  color: #6d28d9;
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.desktop-only-notice h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(1.55rem, 7vw, 2.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.desktop-only-notice p {
+  margin: 16px 0 0;
+  color: #475569;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.desktop-only-notice__cn {
+  color: #334155;
+}
+
+.modal-shell {
+  width: min(1240px, calc(100dvw - (2 * var(--page-padding-inline))));
+  height: min(860px, calc(100dvh - (2 * var(--page-padding-block))));
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 34px;
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+  transform-origin: center;
+  will-change: transform, opacity;
+  animation: settingsModalPanelIn 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.close-button {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.05);
+  color: #0f172a;
+  font-size: 1.35rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-layout {
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(420px, 3fr);
+  align-items: stretch;
+  min-height: 0;
+}
+
+.preview-column {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  padding: 34px 28px 30px;
+  background-color: #f7f7f7;
+  background-image:
+    linear-gradient(45deg, #ececec 25%, transparent 25%),
+    linear-gradient(-45deg, #ececec 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ececec 75%),
+    linear-gradient(-45deg, transparent 75%, #ececec 75%);
+  background-size: 36px 36px;
+  background-position: 0 0, 0 18px, 18px -18px, -18px 0;
+}
+
+.preview-content-group {
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-panel {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-stage-group {
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  flex: 0 0 auto;
+}
+
+.preview-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+}
+
+.composition-stage {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.composition-frame {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 12px 24px rgba(15, 23, 42, 0.1));
+}
+
+.composition-background {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  padding: 0;
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+.whiteboard-canvas {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 0;
+  box-shadow: none;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.preview-content-lines {
+  height: 100%;
+  padding: clamp(18px, 6%, 40px) clamp(18px, 7%, 46px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(7px, 2.5%, 15px);
+  padding-top: clamp(18px, 8%, 52px);
+  padding-bottom: 34%;
+}
+
+.preview-cursor {
+  position: absolute;
+  left: 48%;
+  top: 58%;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.preview-cursor--cursor {
+  clip-path: polygon(0 0, 0 100%, 30% 74%, 48% 100%, 64% 90%, 47% 65%, 84% 65%);
+  background: #111827;
+}
+
+.preview-cursor--highlight {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 2px solid rgba(239, 68, 68, 0.82);
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.preview-content-line {
+  height: clamp(6px, 2.4%, 13px);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.camera-preview {
+  position: absolute;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.camera-preview--circle {
+  border-radius: 999px;
+}
+
+.camera-preview--square {
+  border-radius: 18px;
+}
+
+.camera-preview__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.camera-preview__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.settings-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: 24px 30px 30px;
+  border-left: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.settings-header {
+  flex: 0 0 auto;
+  padding-bottom: 18px;
+}
+
+.settings-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.settings-title {
+  font-size: 2.05rem;
+  font-weight: 850;
+  line-height: 1.04;
+  color: #111827;
+  margin: 0;
+}
+
+.settings-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.settings-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 8px;
+}
+
+.settings-group--section {
+  position: relative;
+  padding: 30px 0 34px;
+}
+
+.settings-group--section:first-child {
+  padding-top: 10px;
+}
+
+.settings-group--section + .settings-group--section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #111827;
+}
+
+.section-block + .section-block {
+  margin-top: 30px;
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.option-button {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #f8f9fb;
+  color: #111827;
+  transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+}
+
+.option-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+.option-button--active {
+  background: #111827;
+  color: #ffffff;
+  border-color: rgba(17, 24, 39, 0.18);
+}
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.tab-button {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #f8f9fb;
+  color: #111827;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.tab-button--active {
+  background: #111827;
+  color: #ffffff;
+  border-color: rgba(17, 24, 39, 0.22);
+}
+
+.background-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.background-swatch {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  border: 2px solid transparent;
+  position: relative;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.background-swatch:hover {
+  transform: translateY(-1px);
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+.background-swatch--selected {
+  border-color: #111827;
+}
+
+.background-swatch--random {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f6f8fb 100%);
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #111827;
+  text-align: left;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
+
+.background-swatch-random-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #111827;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.background-swatch-random-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.swatch-check {
+  position: absolute;
+  inset: 12px;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0.25);
+}
+
+.camera-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.camera-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.camera-note {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.camera-settings-grid {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.camera-setting-field {
+  display: grid;
+  gap: 10px;
+  color: #334155;
+  font-size: 0.86rem;
+  font-weight: 750;
+}
+
+.camera-setting-field select,
+.camera-setting-field input[type='range'] {
+  width: 100%;
+}
+
+.camera-setting-field select {
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 12px;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 650;
+}
+
+.camera-setting-field--range {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.camera-setting-field--range + .camera-setting-field,
+.camera-setting-field--range + .camera-shape-options {
+  margin-top: 8px;
+}
+
+.camera-setting-field--range span,
+.camera-setting-field--range input {
+  grid-column: 1 / -1;
+}
+
+.camera-setting-field--range > span:not(.setting-field-title),
+.camera-setting-field--range > strong {
+  display: none;
+}
+
+.setting-field-title {
+  color: #334155;
+}
+
+.camera-setting-field--range strong {
+  color: #475569;
+  font-size: 0.82rem;
+}
+
+.camera-shape-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.camera-shape-option {
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(248, 250, 252, 0.94);
+  color: #334155;
+  font-weight: 800;
+}
+
+.camera-shape-option--active {
+  background: #111827;
+  color: #ffffff;
+}
+
+.camera-error {
+  margin: 12px 0 0;
+  color: #b91c1c;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.toggle-switch {
+  width: 52px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: #cbd5e1;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 0 auto;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.12);
+  transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.toggle-switch:hover {
+  border-color: rgba(15, 23, 42, 0.24);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.toggle-switch:focus-visible {
+  outline: 3px solid rgba(124, 58, 237, 0.22);
+  outline-offset: 3px;
+}
+
+.toggle-switch--on {
+  background: #111827;
+  border-color: rgba(17, 24, 39, 0.72);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08), 0 6px 16px rgba(17, 24, 39, 0.18);
+}
+
+.toggle-switch--on:hover {
+  border-color: rgba(17, 24, 39, 0.9);
+}
+
+.toggle-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.24);
+  transform: translateX(0);
+  transition: transform 0.18s ease;
+}
+
+.toggle-switch--on .toggle-thumb {
+  transform: translateX(22px);
+}
+
+.toggle-switch:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  box-shadow: none;
+}
+
+
+/* Compact recording settings controls. Preview column sizing intentionally stays unchanged. */
+.settings-column {
+  padding: 20px 24px 24px;
+}
+
+.settings-header {
+  padding-bottom: 12px;
+}
+
+.settings-title {
+  font-size: 1.72rem;
+  line-height: 1.08;
+}
+
+.close-button {
+  width: 36px;
+  height: 36px;
+  font-size: 1.15rem;
+}
+
+.settings-scroll {
+  padding-right: 6px;
+}
+
+.settings-group--section {
+  padding: 22px 0 24px;
+}
+
+.settings-group--section:first-child {
+  padding-top: 6px;
+}
+
+.section-title {
+  margin-bottom: 12px;
+  font-size: 0.94rem;
+}
+
+.settings-subsection + .settings-subsection {
+  margin-top: 18px;
+}
+
+.settings-subsection-title {
+  margin-bottom: 10px;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+}
+
+.section-block + .section-block {
+  margin-top: 22px;
+}
+
+.option-grid {
+  gap: 8px;
+}
+
+.option-button {
+  min-height: 34px;
+  padding: 9px 12px;
+  border-radius: 11px;
+  font-size: 0.86rem;
+  font-weight: 750;
+}
+
+.category-tabs {
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tab-button {
+  padding: 7px 12px;
+  font-size: 0.82rem;
+}
+
+.background-grid {
+  gap: 9px;
+}
+
+.background-swatch {
+  border-radius: 14px;
+}
+
+.background-swatch--random {
+  padding: 12px;
+}
+
+.background-swatch-random-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 0.98rem;
+}
+
+.background-swatch-random-label {
+  font-size: 0.8rem;
+}
+
+.camera-label {
+  font-size: 0.9rem;
+}
+
+.camera-note {
+  margin-top: 4px;
+  font-size: 0.82rem;
+}
+
+.camera-settings-grid {
+  gap: 13px;
+  margin-top: 16px;
+}
+
+.camera-setting-field {
+  gap: 7px;
+  font-size: 0.8rem;
+}
+
+.camera-setting-field select {
+  height: 34px;
+  border-radius: 10px;
+  font-size: 0.84rem;
+}
+
+.camera-setting-field--range {
+  margin-bottom: 6px;
+}
+
+.camera-setting-field--range + .camera-setting-field,
+.camera-setting-field--range + .camera-shape-options {
+  margin-top: 4px;
+}
+
+.setting-field-title {
+  font-size: 0.8rem;
+}
+
+.camera-shape-options {
+  gap: 7px;
+}
+
+.camera-shape-option {
+  height: 34px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+}
+@media (max-width: 1024px) {
+  .modal-layout {
+    grid-template-columns: 1fr;
+    height: 100%;
+  }
+
+  .preview-column {
+    min-height: 300px;
+    padding-bottom: 22px;
+  }
+
+  .settings-column {
+    border-left: none;
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
+    padding-top: 18px;
+  }
+
+  .option-grid,
+  .background-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+
+
+
+.canvas-background-color-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.canvas-background-color {
+  min-height: 38px;
+  border: 2px solid rgba(15, 23, 42, 0.1);
+  border-radius: 12px;
+  color: #0f172a;
+  font-size: 0.72rem;
+  font-weight: 850;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.canvas-background-color:hover {
+  transform: translateY(-1px);
+  border-color: rgba(15, 23, 42, 0.22);
+}
+
+.canvas-background-color--active {
+  border-color: #111827;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72), 0 0 0 2px rgba(17, 24, 39, 0.08);
+}
+
+.settings-field-label {
+  margin: 0 0 8px;
+  color: #64748b;
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.settings-field-label:not(:first-child) {
+  margin-top: 14px;
+}
+
+.canvas-pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.canvas-pattern-option {
+  min-height: 58px;
+  padding: 8px 6px;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: 12px;
+  background: rgba(248, 250, 252, 0.94);
+  color: #334155;
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 850;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.canvas-pattern-option:hover {
+  transform: translateY(-1px);
+  border-color: rgba(15, 23, 42, 0.18);
+}
+
+.canvas-pattern-option--active {
+  background: #111827;
+  border-color: rgba(17, 24, 39, 0.2);
+  color: #ffffff;
+}
+
+.canvas-pattern-preview {
+  width: 42px;
+  height: 22px;
+  border-radius: 7px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.canvas-pattern-option--active .canvas-pattern-preview {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.canvas-pattern-option--none .canvas-pattern-preview {
+  background: #ffffff;
+}
+
+.canvas-pattern-option--ruled .canvas-pattern-preview {
+  background:
+    repeating-linear-gradient(180deg, transparent 0 6px, rgba(51, 65, 85, 0.42) 6px 7px, transparent 7px 12px),
+    #ffffff;
+}
+
+.canvas-pattern-option--grid .canvas-pattern-preview {
+  background:
+    repeating-linear-gradient(180deg, transparent 0 6px, rgba(51, 65, 85, 0.34) 6px 7px, transparent 7px 12px),
+    repeating-linear-gradient(90deg, transparent 0 6px, rgba(51, 65, 85, 0.34) 6px 7px, transparent 7px 12px),
+    #ffffff;
+}
+
+.canvas-pattern-option--dots .canvas-pattern-preview {
+  background:
+    radial-gradient(circle, rgba(51, 65, 85, 0.5) 1.4px, transparent 1.7px) 0 0 / 9px 9px,
+    #ffffff;
+}
+
+.canvas-background-spacing {
+  margin-top: 8px;
+}
+
+.canvas-background-spacing--disabled {
+  opacity: 0.52;
+}
+
+.canvas-background-spacing--disabled input {
+  cursor: not-allowed;
+}
+
+.canvas-background-color-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.canvas-background-color--custom {
+  background:
+    linear-gradient(135deg, #f87171, #facc15 34%, #34d399 67%, #60a5fa) !important;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(15, 23, 42, 0.45);
+}
+
+.canvas-background-color--custom span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.42);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.canvas-background-color--custom input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.canvas-pattern-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.canvas-pattern-option {
+  min-height: 74px;
+  padding: 0;
+  overflow: hidden;
+  align-content: end;
+  background-color: var(--canvas-pattern-card-bg, #ffffff);
+  background-image: none;
+  background-size: 24px 24px;
+  color: #334155;
+  position: relative;
+}
+
+.canvas-pattern-option::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 24px;
+  background: transparent;
+  opacity: 0.72;
+}
+
+.canvas-pattern-label {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 6px 4px;
+  background: rgba(255, 255, 255, 0.72);
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  color: #334155;
+}
+
+.canvas-pattern-option--active .canvas-pattern-label {
+  background: rgba(17, 24, 39, 0.9);
+  color: #ffffff;
+}
+
+.canvas-pattern-option--active {
+  border-color: #111827;
+  box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.08);
+}
+
+.canvas-pattern-option--none::before {
+  background: transparent;
+}
+
+.canvas-pattern-option--ruled::before {
+  background-image: repeating-linear-gradient(180deg, transparent 0 11px, rgba(51, 65, 85, 0.28) 11px 12px, transparent 12px 24px);
+}
+
+.canvas-pattern-option--grid::before {
+  background-image:
+    repeating-linear-gradient(180deg, transparent 0 11px, rgba(51, 65, 85, 0.24) 11px 12px, transparent 12px 24px),
+    repeating-linear-gradient(90deg, transparent 0 11px, rgba(51, 65, 85, 0.24) 11px 12px, transparent 12px 24px);
+}
+
+.canvas-pattern-option--dots::before {
+  background-image: radial-gradient(circle, rgba(51, 65, 85, 0.34) 1.5px, transparent 1.8px);
+  background-size: 12px 12px;
+}
+
+/* Recording settings canvas background polish */
+.canvas-background-color {
+  min-height: 34px;
+  aspect-ratio: 1.45 / 1;
+  padding: 0;
+  overflow: hidden;
+}
+
+.canvas-background-color--custom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-pattern-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.canvas-pattern-option {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 6px;
+  background: transparent !important;
+  color: #475569;
+  box-shadow: none;
+}
+
+.canvas-pattern-option::before {
+  content: none;
+}
+
+.canvas-pattern-preview-card {
+  display: block;
+  width: 100%;
+  height: 52px;
+  border-radius: 13px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.canvas-pattern-label {
+  width: auto;
+  padding: 0;
+  background: transparent !important;
+  border: 0;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 850;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.canvas-pattern-option:hover .canvas-pattern-preview-card {
+  border-color: rgba(15, 23, 42, 0.22);
+  transform: translateY(-1px);
+}
+
+.canvas-pattern-option--active {
+  border-color: transparent;
+  box-shadow: none;
+  color: #111827;
+}
+
+.canvas-pattern-option--active .canvas-pattern-preview-card {
+  border-color: #111827;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34), 0 0 0 2px rgba(17, 24, 39, 0.08);
+}
+
+.canvas-pattern-option--active .canvas-pattern-label {
+  color: #111827;
+}
+
+/* Final recording-settings background cards: four vertical previews with labels outside. */
+.canvas-pattern-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  align-items: start;
+}
+
+.canvas-pattern-option {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 6px;
+  background: transparent !important;
+  color: #475569;
+  box-shadow: none;
+}
+
+.canvas-pattern-option::before {
+  content: none !important;
+}
+
+.canvas-pattern-preview-card {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  min-height: 72px;
+  border-radius: 13px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.canvas-pattern-label {
+  width: auto;
+  padding: 0;
+  background: transparent !important;
+  border: 0;
+  color: #64748b;
+  font-size: 0.74rem;
+  font-weight: 850;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.canvas-pattern-option:hover .canvas-pattern-preview-card {
+  border-color: rgba(15, 23, 42, 0.22);
+  transform: translateY(-1px);
+}
+
+.canvas-pattern-option--active {
+  border-color: transparent;
+  box-shadow: none;
+  color: #111827;
+}
+
+.canvas-pattern-option--active .canvas-pattern-preview-card {
+  border-color: #111827;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34), 0 0 0 2px rgba(17, 24, 39, 0.08);
+}
+
+.canvas-pattern-option--active .canvas-pattern-label {
+  color: #111827;
+}
+
+/* Compact canvas background color swatches and roomier spacing controls. */
+.canvas-background-color-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.canvas-background-color {
+  min-height: 24px;
+  height: 24px;
+  aspect-ratio: auto;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.canvas-background-color--custom span {
+  width: 16px;
+  height: 16px;
+  font-size: 0.88rem;
+}
+
+.canvas-pattern-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  align-items: start;
+}
+
+.canvas-pattern-preview-card {
+  aspect-ratio: 2 / 3;
+  min-height: 82px;
+}
+
+/* Recording settings swatches: compact but not stretched. */
+.canvas-background-color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.canvas-background-color {
+  width: 46px;
+  height: 32px;
+  min-height: 32px;
+  flex: 0 0 auto;
+  aspect-ratio: auto;
+  padding: 0;
+  border-radius: 10px;
+}
+
+.canvas-background-color--custom span {
+  width: 18px;
+  height: 18px;
+  font-size: 0.96rem;
+}
+
+/* Restore background style cards to taller vertical previews. */
+.canvas-pattern-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  align-items: start;
+}
+
+.canvas-pattern-preview-card {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  min-height: 86px;
+  border-radius: 13px;
+}
+
+.canvas-pattern-label {
+  margin-top: 1px;
+  background: transparent !important;
+  border: 0;
+}
+
+/* Requested recording background picker sizing. */
+.canvas-background-color-grid {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.canvas-background-color {
+  width: 56px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  flex: 0 0 56px;
+  border-radius: 12px;
+  padding: 0;
+}
+
+.canvas-background-color--custom span {
+  width: 22px;
+  height: 22px;
+  font-size: 1.05rem;
+}
+
+/* Requested recording background pattern preview cards. */
+.canvas-pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 12px;
+}
+
+.canvas-pattern-option {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  display: grid !important;
+  grid-template-rows: auto auto;
+  gap: 7px;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.canvas-pattern-option::before {
+  content: none !important;
+}
+
+.canvas-pattern-preview-card {
+  display: block;
+  width: 100%;
+  height: 104px !important;
+  min-height: 104px !important;
+  aspect-ratio: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+}
+
+.canvas-pattern-label {
+  width: auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 850;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.canvas-pattern-option--active .canvas-pattern-preview-card {
+  border-color: #6d5dfc !important;
+  box-shadow: 0 0 0 2px rgba(109, 93, 252, 0.16) !important;
+}
+
+.canvas-pattern-option--active .canvas-pattern-label {
+  color: #4338ca;
+}
+
+
+/* Frame background asset picker: image presets only, no color-card catalogue. */
+.background-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.background-swatch--image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.background-swatch--random:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  transform: none;
+  box-shadow: none;
+}
+
+.background-empty-note {
+  margin: 10px 0 0;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.composition-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Frame background picker layout: random action above a compact 3-column scroll grid. */
+.background-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.background-random-button {
+  display: inline-flex;
+  width: 100%;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 13px;
+  background: linear-gradient(180deg, #ffffff 0%, #f6f8fb 100%);
+  color: #111827;
+  font-size: 0.84rem;
+  font-weight: 800;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.78);
+  transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+}
+
+.background-random-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(109, 93, 252, 0.32);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.background-random-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  transform: none;
+  box-shadow: none;
+}
+
+.background-random-button__icon {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 0.92rem;
+  line-height: 1;
+}
+
+.background-grid-scroll {
+  max-height: 360px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  scrollbar-width: thin;
+}
+
+.background-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.background-swatch {
+  border-radius: 13px;
+}
+
+.background-swatch--image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 720px) {
+  .background-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .background-grid-scroll {
+    max-height: 300px;
+  }
+}
+
+/* Frame background picker polish: refined random action and clear purple selection. */
+.background-random-button {
+  border-color: rgba(139, 92, 246, 0.22);
+  background:
+    linear-gradient(135deg, rgba(139, 92, 246, 0.14), rgba(99, 102, 241, 0.08)),
+    rgba(255, 255, 255, 0.94);
+  color: #4c1d95;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78),
+    0 10px 22px rgba(109, 93, 252, 0.08);
+}
+
+.background-random-button:hover:not(:disabled) {
+  border-color: rgba(139, 92, 246, 0.48);
+  background:
+    linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(99, 102, 241, 0.12)),
+    #ffffff;
+  box-shadow:
+    0 12px 26px rgba(109, 93, 252, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.86);
+}
+
+.background-random-button__icon {
+  width: 24px;
+  height: 24px;
+  background: rgba(139, 92, 246, 0.14);
+  color: #6d5dfc;
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.18);
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.background-swatch {
+  border-color: rgba(15, 23, 42, 0.07);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.background-swatch:hover {
+  border-color: rgba(139, 92, 246, 0.28);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.background-swatch--selected {
+  border-color: #8b5cf6;
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.18),
+    0 12px 26px rgba(109, 93, 252, 0.14);
+}
+
+.background-swatch--selected:hover {
+  border-color: #8b5cf6;
+}
+
+.swatch-check {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 18px;
+  height: 18px;
+  inset: auto;
+  border-radius: 999px;
+  background: #8b5cf6;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.92),
+    0 6px 14px rgba(76, 29, 149, 0.24);
+}
+
+.swatch-check::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  width: 4px;
+  height: 8px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Frame background random action: glassy material pool cue + centered selected mark. */
+.background-random-button {
+  position: relative;
+  isolation: isolate;
+  min-height: 44px;
+  justify-content: flex-start;
+  padding: 0 16px;
+  margin-bottom: 6px;
+  overflow: hidden;
+  border-color: rgba(139, 92, 246, 0.24);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(244, 240, 255, 0.68)),
+    rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px) saturate(1.18);
+  -webkit-backdrop-filter: blur(14px) saturate(1.18);
+  box-shadow:
+    0 16px 34px rgba(109, 93, 252, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+}
+
+.background-random-button::before,
+.background-random-button::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+.background-random-button::before {
+  inset: -40% auto auto 44%;
+  width: 150px;
+  height: 110px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 45%, rgba(168, 85, 247, 0.24), transparent 58%),
+    radial-gradient(circle at 72% 52%, rgba(59, 130, 246, 0.16), transparent 62%);
+  filter: blur(5px);
+  z-index: -2;
+}
+
+.background-random-button::after {
+  right: 14px;
+  top: 50%;
+  width: 46px;
+  height: 28px;
+  border-radius: 9px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(167, 139, 250, 0.28));
+  box-shadow:
+    -12px 5px 0 -3px rgba(196, 181, 253, 0.32),
+    -22px -4px 0 -5px rgba(129, 140, 248, 0.24),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) rotate(-5deg);
+  z-index: -1;
+}
+
+.background-random-button:hover:not(:disabled) {
+  border-color: rgba(139, 92, 246, 0.5);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(241, 236, 255, 0.76)),
+    rgba(255, 255, 255, 0.68);
+  box-shadow:
+    0 18px 38px rgba(109, 93, 252, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.38);
+}
+
+.background-random-button__icon {
+  background: rgba(255, 255, 255, 0.56);
+  color: #6d5dfc;
+  box-shadow:
+    inset 0 0 0 1px rgba(139, 92, 246, 0.2),
+    0 8px 16px rgba(109, 93, 252, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.background-grid-scroll {
+  margin-top: 6px;
+}
+
+.swatch-check {
+  left: 50%;
+  top: 50%;
+  right: auto;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+}
+
+.swatch-check::after {
+  left: 8px;
+  top: 5px;
+  width: 5px;
+  height: 9px;
+}
+
+/* Small alignment polish for background/random controls and custom color plus marks. */
+.background-random-button {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.34),
+    0 6px 14px rgba(109, 93, 252, 0.05);
+}
+
+.background-random-button::before {
+  opacity: 0.28;
+  filter: blur(8px);
+}
+
+.background-random-button::after {
+  box-shadow:
+    -12px 5px 0 -3px rgba(196, 181, 253, 0.2),
+    -22px -4px 0 -5px rgba(129, 140, 248, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.48);
+}
+
+.background-random-button:hover:not(:disabled) {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.36),
+    0 8px 18px rgba(109, 93, 252, 0.08);
+}
+
+.canvas-background-color--custom,
+.board-properties-panel__color-swatch--custom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.canvas-background-color--custom span,
+.board-properties-panel__color-swatch--custom span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  transform: none;
+}
+
+/* Canvas section polish: aspect cards and full-width color swatch grid. */
+.option-grid--aspect-ratio {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.option-button--aspect-ratio {
+  min-height: 54px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 9px 8px;
+  text-align: center;
+}
+
+.option-button__title {
+  font-size: 0.95rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.option-button__subtitle {
+  color: rgba(100, 116, 139, 0.86);
+  font-size: 0.68rem;
+  font-weight: 760;
+  line-height: 1.08;
+  white-space: nowrap;
+}
+
+.option-button--active .option-button__subtitle {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.canvas-background-color-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.canvas-background-color {
+  width: 100% !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  flex: initial !important;
+  border-radius: 12px;
+}
+
+.canvas-background-color--custom {
+  position: relative;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.canvas-background-color--custom span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex !important;
+  width: auto !important;
+  height: auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+@media (max-width: 720px) {
+  .option-grid--aspect-ratio {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .canvas-background-color-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Recording settings hierarchy polish: consistent section titles, field titles, and spacing. */
+.settings-scroll {
+  --settings-section-title-color: #0f172a;
+  --settings-field-title-color: #334155;
+  --settings-description-color: #64748b;
+  --settings-field-gap: 12px;
+}
+
+.settings-group--section {
+  padding: 26px 0 28px;
+}
+
+.settings-group--section:first-child {
+  padding-top: 8px;
+}
+
+.settings-group--section + .settings-group--section::before {
+  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.09), transparent);
+}
+
+.section-title {
+  margin: 0 0 16px;
+  color: var(--settings-section-title-color);
+  font-size: 1.02rem;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.settings-subsection {
+  display: grid;
+  gap: var(--settings-field-gap);
+}
+
+.settings-subsection + .settings-subsection {
+  margin-top: 22px;
+}
+
+.settings-subsection-title,
+.settings-field-label,
+.camera-label,
+.camera-setting-field > span:first-child,
+.setting-field-title {
+  margin: 0;
+  color: var(--settings-field-title-color);
+  font-size: 0.82rem;
+  font-weight: 860;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+}
+
+.settings-subsection-title,
+.settings-field-label {
+  margin-bottom: 0;
+}
+
+.settings-field-label:not(:first-child) {
+  margin-top: 4px;
+}
+
+.camera-note {
+  margin: 5px 0 0;
+  color: var(--settings-description-color);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.camera-control {
+  gap: 18px;
+  padding: 2px 0 4px;
+}
+
+.camera-settings-grid + .camera-control {
+  margin-top: 22px;
+}
+
+.camera-settings-grid {
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.camera-setting-field {
+  gap: 9px;
+  color: var(--settings-field-title-color);
+  font-size: 0.82rem;
+  font-weight: 820;
+}
+
+.camera-setting-field--range {
+  margin-bottom: 2px;
+}
+
+.camera-shape-options {
+  margin-top: 0;
+}
+
+.canvas-background-color-grid,
+.canvas-pattern-grid {
+  margin-top: 0;
+}
+
+.canvas-background-spacing {
+  margin-top: 2px;
+}
+
+.background-section {
+  gap: 12px;
+}
+
+.background-random-button {
+  margin-bottom: 8px;
+}
+
+.background-grid-scroll {
+  margin-top: 2px;
+}
+
+@media (max-width: 720px) {
+  .settings-group--section {
+    padding: 22px 0 24px;
+  }
+
+  .section-title {
+    margin-bottom: 14px;
+    font-size: 0.98rem;
+  }
+
+  .settings-subsection + .settings-subsection {
+    margin-top: 20px;
+  }
+
+  .camera-settings-grid {
+    gap: 15px;
+  }
+}
+
+/* Recording settings canvas controls: purple selected states and clean custom color plus. */
+.canvas-background-color--active {
+  border-color: #8b5cf6 !important;
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.58) !important;
+}
+
+.canvas-background-color--active:hover {
+  border-color: #8b5cf6 !important;
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.24),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.66) !important;
+}
+
+.canvas-pattern-option--active {
+  border-color: #8b5cf6 !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  color: #6d28d9 !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18) !important;
+}
+
+.canvas-pattern-option--active:hover {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.22) !important;
+}
+
+.canvas-pattern-option--active .canvas-pattern-preview-card {
+  border-color: rgba(139, 92, 246, 0.5) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.54) !important;
+}
+
+.canvas-pattern-option--active .canvas-pattern-label {
+  color: #6d28d9 !important;
+}
+
+.canvas-background-color--custom {
+  overflow: hidden;
+  text-shadow: none !important;
+}
+
+.canvas-background-color--custom span {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  color: #5b21b6 !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-shadow: none !important;
+  transform: translate(-50%, -50%) !important;
+  box-shadow:
+    0 4px 10px rgba(76, 29, 149, 0.16),
+    inset 0 0 0 1px rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Recording settings canvas controls: final selected-state refinement. */
+.canvas-background-color--active,
+.canvas-background-color--active:hover {
+  border-color: #8b5cf6 !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.58) !important;
+  outline: none !important;
+  filter: none !important;
+}
+
+.canvas-background-color--custom span {
+  display: none !important;
+}
+
+.canvas-pattern-option--active,
+.canvas-pattern-option--active:hover {
+  border-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.canvas-pattern-option--active .canvas-pattern-preview-card {
+  border-color: #8b5cf6 !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.54) !important;
+}
+
+.canvas-pattern-option--active .canvas-pattern-label {
+  color: #6d28d9 !important;
+}
+
+/* Recording settings canvas pattern selected border thickness matches color swatches. */
+.canvas-pattern-option--active .canvas-pattern-preview-card {
+  border-width: 2px !important;
+  border-color: #8b5cf6 !important;
+  box-sizing: border-box;
+}
